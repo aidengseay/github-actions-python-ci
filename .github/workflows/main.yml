@@ -1,18 +1,44 @@
+# this is the name of the GitHub Action workflow
 name: Python application
+
+# these are the events on GitHub that this Action will execute on
 on: [push, pull_request]
+
+# lists out all of the jobs inside the workflow
 jobs:
+
+  # specific job to run
   build:
+    
+    # lists out the OS to run the program
     runs-on: ubuntu-latest
 
+    # specifies the steps for the job to run
     steps:
+
+      # look at the code that's in the repository
     - uses: actions/checkout@v3
+    
+      # name the specific action in the job
     - name: Set up Python 3.8
+
+      # gets the correct version of python to run
       uses: actions/setup-python@v4
+
+      # specifies the python version number
       with:
         python-version: 3.8
+
+      # name the specific action in the job
     - name: Install dependencies
+
+      # gets all of the dependencies in python to run
       run: |
         python -m pip install --upgrade pip
+
+      # name the specific action in the job
     - name: Run tests
+
+      # run the unit tests in the code
       run: |
         python -m unittest discover -s tests
